@@ -53,7 +53,7 @@ public class Factura {
         salida += "Factura N:. " + identificador + "\n"
                 + "Fecha de compra = " + fecha + "\n";
         for (int i = 0; i < this.listaCelular.size(); i++) {
-            salida += this.listaCelular.get(i).getNombre() + "  ";
+            salida += this.listaCelular.get(i).getModelo()+ "  ";
             salida += this.listaCelular.get(i).getPrecio() + "   \n";
         }
         salida += "Sumatoria de precios = $" + calcularPrecioTotal()

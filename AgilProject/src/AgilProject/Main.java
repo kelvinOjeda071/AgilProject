@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args) {
         ArrayList <Celular> listaCelularesEmpresa = new ArrayList<>();
         String opcionMenuCompra;
-        String imeiDeCelular;
+        String modelo;
         Celular c1 = new Celular("Redmi note 8", "Xiaomi", "1234567889", 
                 new Garantia("12/20/2030", "La garantia solo se aplica por "
                         + "defectos de fabrica"), 180);
@@ -43,11 +43,12 @@ public class Main {
             switch (opcionMenuCompra) {
                 case "1":
                     System.out.println(empresa.mostrarCelulares());
-                    System.out.println("Seleccione el celular que desea por su codigo IMEI: ");
-                    imeiDeCelular = sc.next();
-                    if (empresa.verificarExistenciaCelular(imeiDeCelular)) {
-                        if (empresa.verificarDisponibilidadCelular(imeiDeCelular)) {
-                            System.out.println(empresa.generarFactura(imeiDeCelular));
+                    System.out.print("\nDigite el modelo de celular que desea obtener: ");
+                    modelo = sc.nextLine();
+                    System.out.println("Modelo seleccionado "+modelo);
+                    if (empresa.verificarExistenciaCelular(modelo)) {
+                        if (empresa.verificarDisponibilidadCelular(modelo)) {
+                            System.out.println(empresa.generarFactura(modelo));
                             System.exit(0);
 
                         } else {

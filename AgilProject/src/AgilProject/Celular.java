@@ -29,7 +29,7 @@ public class Celular {
 
     
 
-    public String getNombre() {
+    public String getModelo() {
         return modelo;
     }
 

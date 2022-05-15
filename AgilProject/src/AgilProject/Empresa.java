@@ -29,7 +29,7 @@ public class Empresa {
         String salida = "";
         salida += "Bienvenido a la empresa " + this.nombre
                 + "\nA continuacion te ofrecemos nuestra lista de telefonos "
-                + "celulares";
+                + "celulares\n";
         for( int i = 0; i < listaCelularesEmpresa.size(); i++){
             if(this.listaCelularesEmpresa.get(i).getEstado().equals("Disponible")){
                 salida += this.listaCelularesEmpresa.get(i)+"\n";
@@ -39,20 +39,20 @@ public class Empresa {
         return salida;
     }
     
-    public boolean verificarExistenciaCelular(String codigoImei){
-        boolean encontroImei = false;
+    public boolean verificarExistenciaCelular(String modelo){
+        boolean encontroModelo = false;
         for (int i = 0; i < listaCelularesEmpresa.size(); i++) {
-            if (listaCelularesEmpresa.get(i).getCodigoImei().equals(codigoImei)){
-                encontroImei = true;
+            if (listaCelularesEmpresa.get(i).getModelo().equalsIgnoreCase(modelo)){
+                encontroModelo = true;
             }
         }
-        return encontroImei;
+        return encontroModelo;
     }
     
-    public boolean verificarDisponibilidadCelular(String codigoImei){
+    public boolean verificarDisponibilidadCelular(String modelo){
         boolean  estaDisponible= false;
         for (int i = 0; i < listaCelularesEmpresa.size(); i++) {
-            if (listaCelularesEmpresa.get(i).getCodigoImei().equals(codigoImei)){
+            if (listaCelularesEmpresa.get(i).getModelo().equalsIgnoreCase(modelo)){
                if(listaCelularesEmpresa.get(i).getEstado().equalsIgnoreCase("Disponible")){
                    estaDisponible = true;
                }
@@ -61,30 +61,30 @@ public class Empresa {
         return estaDisponible;
     }
     
-    public void cambiarEstadoNoDisponible(String codigoImei){
+    public void cambiarEstadoNoDisponible(String modelo){
         for (int i = 0; i < listaCelularesEmpresa.size(); i++) {
-            if (listaCelularesEmpresa.get(i).getCodigoImei().equals(codigoImei)){
+            if (listaCelularesEmpresa.get(i).getModelo().equalsIgnoreCase(modelo)){
                 this.listaCelularesEmpresa.get(i).setEstado("No disponible");
             }
         }
     }
     
-    public int retornarNumeroCelular(String codigoImei){
+    public int retornarNumeroCelular(String modelo){
         int numeroCelular = -1;
         for (int i = 0; i < listaCelularesEmpresa.size(); i++) {
-            if (listaCelularesEmpresa.get(i).getCodigoImei().equals(codigoImei)){
+            if (listaCelularesEmpresa.get(i).getModelo().equalsIgnoreCase(modelo)){
                 numeroCelular = i;
             }
         }
         return numeroCelular;
     }
     
-    public String generarFactura(String codigoImei){
+    public String generarFactura(String modelo){
         String salida="";
         salida += ("Se ha realizado la compra con exito");
         salida += ("A continuacion se presenta su factura");
-        Factura factura = new Factura("1", "Compra de celular", listaCelularesEmpresa.get(retornarNumeroCelular(codigoImei)));
-        factura.agregarListaCelulares(listaCelularesEmpresa.get(retornarNumeroCelular(codigoImei)));
+        Factura factura = new Factura("1", "Compra de celular", listaCelularesEmpresa.get(retornarNumeroCelular(modelo)));
+        factura.agregarListaCelulares(listaCelularesEmpresa.get(retornarNumeroCelular(modelo)));
         salida += factura;
         return salida;
     }
