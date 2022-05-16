@@ -19,9 +19,17 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        // Lista de celulares que simula la carga iniciar de archivos
         ArrayList <Celular> listaCelularesEmpresa = new ArrayList<>();
+        
+        // Variable que permite alojar las opción del menú de compra
         String opcionMenuCompra;
+        
+        // Variable que permitirá almacenar el modelo del celular, una 
+        // vez seleccionado la compra del celular
         String modelo;
+        
+        // Creación de los objetos celular
         Celular c1 = new Celular("Redmi note 8", "Xiaomi", "1234567889", 
                 new Garantia("12/20/2030", "La garantia solo se aplica por "
                         + "defectos de fabrica"), 180);
@@ -31,24 +39,41 @@ public class Main {
         Celular c3 = new Celular("Redmi note 10", "Xiaomi", "1234567811", 
                 new Garantia("12/20/2030", "La garantia solo se aplica por "
                         + "defectos de fabrica"), 210);
+        
+        // Se incorpora a cada uno de los celulares dentro de la lista
         listaCelularesEmpresa.add(c1);
         listaCelularesEmpresa.add(c2);
         listaCelularesEmpresa.add(c3);
         Empresa empresa = new Empresa("MERCADOCELL.SA", listaCelularesEmpresa);
+        
+        // Menú que permite mostrar el menú de compra
         System.out.println(mostrarMenuDeCompra());
+        
+        // Se utiliza un objeto scanner para almacenar la opción seleccionada
+        // del menú de compra
         System.out.print("\nIngrese la opcion: ");
         Scanner sc= new Scanner(System.in);
-        opcionMenuCompra = sc.next();
+        opcionMenuCompra = sc.nextLine();
         do {
             switch (opcionMenuCompra) {
-                case "1":
+                // En caso que la opción selecionada sea compra de celulares
+                case "1": 
+                    
+                    // Permite visualizar los celulares cuyo estado sea disponible
                     System.out.println(empresa.mostrarCelulares());
-                    System.out.print("\nDigite el modelo de celular que desea obtener: ");
+                    System.out.println("\nDigite el modelo de celular que desea obtener: ");
                     modelo = sc.nextLine();
-                    System.out.println("Modelo seleccionado "+modelo);
+                    
+                    // Se verifica al existencia del teléfono
                     if (empresa.verificarExistenciaCelular(modelo)) {
+                        
+                        // Se verifica la disponibilidad del celular
                         if (empresa.verificarDisponibilidadCelular(modelo)) {
+                            
+                            // Imprime la factura a traves de la consola
                             System.out.println(empresa.generarFactura(modelo));
+                            
+                            // Termina la ejecución del programa
                             System.exit(0);
 
                         } else {
@@ -58,6 +83,7 @@ public class Main {
                         System.out.println("El celular no existe");
                     }
                     break;
+                // En caso que la opci'ón seleccionada sea salir del sistema
                 case "2":
                     System.exit(0);
                     break;

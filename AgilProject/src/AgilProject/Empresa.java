@@ -15,16 +15,17 @@ import java.util.ArrayList;
 public class Empresa {
     private String nombre;
     private ArrayList <Celular> listaCelularesEmpresa;
-
+    
+    // Contructor de la clase Empresa
     public Empresa(String nombre, ArrayList<Celular> listaCelularesEmpresa) {
         this.nombre = nombre;
         this.listaCelularesEmpresa = listaCelularesEmpresa;
     }
-    
+    // Método que permite agregar nuevos teléfonos a una lista de celulares
     public void agregarListaCelularEmpresa(Celular celular){
         this.listaCelularesEmpresa.add(celular);
     }
-    
+    // Método que permite visualizar los celulares disponibles de la empresa
     public String mostrarCelulares(){
         String salida = "";
         salida += "Bienvenido a la empresa " + this.nombre
@@ -38,6 +39,8 @@ public class Empresa {
         }
         return salida;
     }
+    // Método que permite comprobar la existencia de un teléfono respecto al 
+    // modelo
     
     public boolean verificarExistenciaCelular(String modelo){
         boolean encontroModelo = false;
@@ -48,7 +51,7 @@ public class Empresa {
         }
         return encontroModelo;
     }
-    
+    // Método que permite verificar si un celular se encuentra disponible o no
     public boolean verificarDisponibilidadCelular(String modelo){
         boolean  estaDisponible= false;
         for (int i = 0; i < listaCelularesEmpresa.size(); i++) {
@@ -60,7 +63,7 @@ public class Empresa {
         }
         return estaDisponible;
     }
-    
+    // Método que permite cambiar el estado de un teléfono
     public void cambiarEstadoNoDisponible(String modelo){
         for (int i = 0; i < listaCelularesEmpresa.size(); i++) {
             if (listaCelularesEmpresa.get(i).getModelo().equalsIgnoreCase(modelo)){
@@ -68,7 +71,7 @@ public class Empresa {
             }
         }
     }
-    
+    // Método que permite retornar la ubicación dentro de una lista de teléfono
     public int retornarNumeroCelular(String modelo){
         int numeroCelular = -1;
         for (int i = 0; i < listaCelularesEmpresa.size(); i++) {
@@ -78,11 +81,11 @@ public class Empresa {
         }
         return numeroCelular;
     }
-    
+    // Método que permite geenrar la factura
     public String generarFactura(String modelo){
         String salida="";
         salida += ("Se ha realizado la compra con exito");
-        salida += ("A continuacion se presenta su factura");
+        salida += ("\nA continuacion se presenta su factura\n");
         Factura factura = new Factura("1", "Compra de celular", listaCelularesEmpresa.get(retornarNumeroCelular(modelo)));
         factura.agregarListaCelulares(listaCelularesEmpresa.get(retornarNumeroCelular(modelo)));
         salida += factura;
