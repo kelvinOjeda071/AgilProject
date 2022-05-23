@@ -150,4 +150,8 @@ public class Empresa {
                 + "\nIngrese la opcion: ";
     }
 
+    public boolean verificarAlComprarCelular(String modelo, int cantidad, Empresa empresa){
+        return this.verificarExistenciaCelular(modelo) && this.verificarDisponibilidadCelular(cantidad, modelo);
+    }
+
 }

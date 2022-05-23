@@ -57,7 +57,7 @@ public class Main {
                     modeloDeCelular = sc1.nextLine();
                     System.out.println("Ingrese la cantidad de telefonos que desee comprar: ");
                     cantidadCelulares = sc1.nextInt();
-                    if (verificarAlComprarUnCelular(modeloDeCelular, cantidadCelulares, empresa)) {
+                    if (empresa.verificarAlComprarCelular(modeloDeCelular, cantidadCelulares, empresa)) {
                             empresa.cambiarEstadoNoDisponible(modeloDeCelular, cantidadCelulares);
                             empresa.generarFactura();
                             System.exit(0);
@@ -76,9 +76,6 @@ public class Main {
                     opcionMenuCompra = sc.next();
             }
         } while (opcionMenuCompra.equals("1"));
-    }
-    public static boolean verificarAlComprarUnCelular(String modelo, int cantidad, Empresa empresa){
-        return empresa.verificarExistenciaCelular(modelo) && empresa.verificarDisponibilidadCelular(cantidad, modelo);
     }
 
 
