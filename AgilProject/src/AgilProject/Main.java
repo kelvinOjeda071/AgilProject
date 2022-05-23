@@ -51,22 +51,20 @@ public class Main {
                 case "1":
                     String modeloDeCelular;
                     int cantidadCelulares;
+                    Scanner sc1 = new Scanner(System.in);
                     empresa.mostrarCelulares();
-                    System.out.print("Seleccione el celular que desea por su modelo: ");
-                    modeloDeCelular = sc.nextLine();
-//                    System.out.println(modeloDeCelular);
-                    if (empresa.verificarExistenciaCelular(modeloDeCelular)) {
-                        System.out.print("\nIngrese la cantidad de telefonos que desee comprar: ");
-                        cantidadCelulares = sc.nextInt();
-                        if (empresa.verificarDisponibilidadCelular(cantidadCelulares, modeloDeCelular)) {
+                    System.out.println("Seleccione el celular que desea por su modelo: ");
+                    modeloDeCelular = sc1.nextLine();
+                    System.out.println("Ingrese la cantidad de telefonos que desee comprar: ");
+                    cantidadCelulares = sc1.nextInt();
+                    if (verificarAlComprarUnCelular(modeloDeCelular, cantidadCelulares, empresa)) {
                             empresa.cambiarEstadoNoDisponible(modeloDeCelular, cantidadCelulares);
                             empresa.generarFactura();
                             System.exit(0);
-                        } else {
-                            System.out.println("El modelo del celular anteriormente ingresado no esta disponible");
-                        }
+
                     } else {
-                        System.out.println("El modelo del celular anteriormente ingresado no existe");
+                        System.out.println("El modelo del celular anteriormente ingresado no existe o el stock " +
+                                "anteriormente ingresado no se dispone al momento");
                     }
                     break;
                 case "2":
@@ -78,15 +76,13 @@ public class Main {
                     opcionMenuCompra = sc.next();
             }
         } while (opcionMenuCompra.equals("1"));
-
-
-
-
-
-
+    }
+    public static boolean verificarAlComprarUnCelular(String modelo, int cantidad, Empresa empresa){
+        return empresa.verificarExistenciaCelular(modelo) && empresa.verificarDisponibilidadCelular(cantidad, modelo);
     }
 
 
 
 
 }
+
