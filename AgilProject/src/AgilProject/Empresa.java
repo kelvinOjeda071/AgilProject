@@ -141,4 +141,50 @@ public class Empresa {
             this.listaDeClientes.add(cliente);
         }
     }
+
+    //Menú que permite visualizar las opciones de compra hacia el comprador
+    public String mostrarMenuDeIngreso(){
+        return "\n\nSeleccione una de las siguientes opciones: "
+                + "\n1. Comprar celular"
+                + "\n2. Salir";
+    }
+    public void realizarCompra(){
+        String opcionMenuCompra;
+        String modeloDeCelular;
+        int cantidadCelulares;
+        System.out.println(this.mostrarMenuDeIngreso());
+        System.out.print("\nIngrese la opcion: ");
+        Scanner sc = new Scanner(System.in);
+        opcionMenuCompra = sc.next();
+        do {
+            switch (opcionMenuCompra) {
+                case "1":
+                    this.mostrarCelulares();
+                    System.out.print("Seleccione el celular que desea por su modelo: ");
+                    modeloDeCelular = sc.nextLine();
+//                    System.out.println(modeloDeCelular);
+                    if (this.verificarExistenciaCelular(modeloDeCelular)) {
+                        System.out.print("\nIngrese la cantidad de telefonos que desee comprar: ");
+                        cantidadCelulares = sc.nextInt();
+                        if (this.verificarDisponibilidadCelular(cantidadCelulares, modeloDeCelular)) {
+                            this.cambiarEstadoNoDisponible(modeloDeCelular, cantidadCelulares);
+                            this.generarFactura();
+                            System.exit(0);
+                        } else {
+                            System.out.println("El modelo del celular anteriormente ingresado no esta disponible");
+                        }
+                    } else {
+                        System.out.println("El modelo del celular anteriormente ingresado no existe");
+                    }
+                    break;
+                case "2":
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("La opcion no existe intentelo de nuevo");
+                    System.out.println(this.mostrarMenuDeIngreso());
+                    opcionMenuCompra = sc.next();
+            }
+        } while (opcionMenuCompra.equals("1"));
+    }
 }
