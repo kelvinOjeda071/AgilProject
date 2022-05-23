@@ -39,6 +39,14 @@ public class ListaMenuDesplegable {
         }
     }
 
+    public void delegarLaCantidadPorModelo(ListaMenuDesplegable listaMenuDesplegable, ListaCelulares listaCelulares) {
+        for (int i = 0; i < listaMenuDesplegable.tamanioDeLaLista(); i++) {
+            listaMenuDesplegable.get(i).setCantidad(listaCelulares.contarPorModelo(listaMenuDesplegable.
+                    get(i).getModelo()));
+        }
+    }
+
+
     public ArrayList<MenuDeplegable> getListaMenuDesplegable(){
         return this.listaMenuDesplegable;
     }

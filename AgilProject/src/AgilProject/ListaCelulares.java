@@ -70,20 +70,13 @@ public class ListaCelulares {
                 }
             }
         }
+        listaMenuDesplegable.delegarLaCantidadPorModelo(listaMenuDesplegable, this);
+
 
     }
 
     public boolean verificarCelularesDisponibles(Celular celular){
         return celular.getEstado().equalsIgnoreCase("Disponible");
-    }
-
-    public void delegarLaCantidadPorModelo() {
-        ArrayList<MenuDeplegable> listaMenuDesplegableEnListaCelular = listaMenuDesplegable.getListaMenuDesplegable();
-        for (int i = 0; i < listaMenuDesplegableEnListaCelular.size(); i++) {
-            listaMenuDesplegableEnListaCelular.get(i).setCantidad(contarPorModelo(listaMenuDesplegableEnListaCelular.get(i).getModelo()));
-        }
-        listaMenuDesplegable.setListaMenuDesplegable(listaMenuDesplegableEnListaCelular);
-
     }
 
     public int contarPorModelo(String modelo) {

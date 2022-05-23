@@ -33,7 +33,6 @@ public class Empresa {
 
         System.out.println(salida);
         listaCelularesEmpresa.crearArrayListDeModelos();
-        listaCelularesEmpresa.delegarLaCantidadPorModelo();
         listaCelularesEmpresa.imprimirPorConsolaElementosListaDeMenu();
     }
 
