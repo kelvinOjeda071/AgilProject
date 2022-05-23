@@ -1,10 +1,8 @@
-package AgilProject;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
+package AgilProject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,13 +21,13 @@ public class Factura {
     private String fecha;
     private ArrayList<Celular> listaCelular;
 
-    public Factura(String identificador, String detalleFactura, Celular celular) {
+    public Factura(String identificador, String detalleFactura, ArrayList<Celular> listaCelular) {
         this.identificador = identificador;
         this.detalleFactura = detalleFactura;
         Date today = new Date(System.currentTimeMillis());
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         this.fecha = format.format(today);
-        this.listaCelular = new ArrayList<>();
+        this.listaCelular = listaCelular;
     }
 
     public void agregarListaCelulares(Celular celular) {
@@ -53,7 +51,7 @@ public class Factura {
         salida += "Factura N:. " + identificador + "\n"
                 + "Fecha de compra = " + fecha + "\n";
         for (int i = 0; i < this.listaCelular.size(); i++) {
-            salida += this.listaCelular.get(i).getNombre() + "  ";
+            salida += this.listaCelular.get(i).getModelo() + "  ";
             salida += this.listaCelular.get(i).getPrecio() + "   \n";
         }
         salida += "Sumatoria de precios = $" + calcularPrecioTotal()

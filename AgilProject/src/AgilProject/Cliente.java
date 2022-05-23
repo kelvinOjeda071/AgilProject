@@ -1,13 +1,10 @@
-package AgilProject;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
+package AgilProject;
 
 /**
- *
  * @author Kelvin
  */
 public class Cliente {
@@ -19,6 +16,11 @@ public class Cliente {
         this.nombre = nombre;
         this.cuenta = cuenta;
         this.factura = factura;
+    }
+
+    public Cliente(String nombre, Cuenta cuentaUsuarioSinFactura) {
+        this.nombre = nombre;
+        this.cuenta = cuentaUsuarioSinFactura;
     }
 
     public String getNombre() {
@@ -47,12 +49,11 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente\n" 
-                + "\n Nombre =" + nombre 
+        return "Cliente\n"
+                + "\n Nombre =" + nombre
                 + "\n Cuenta=" + cuenta
-                + "\n Factura=" + factura ;
+                + "\n Factura=" + factura;
     }
-    
-    
-    
+
+
 }

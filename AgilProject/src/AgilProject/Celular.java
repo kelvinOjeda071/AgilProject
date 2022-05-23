@@ -1,10 +1,8 @@
-package AgilProject;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
+package AgilProject;
 
 /**
  *
@@ -15,10 +13,10 @@ public class Celular {
     private String nombreMarca;
     private String codigoImei;
     private Garantia garantia;
-    private double precio;
+    private float precio;
     private String estado;
 
-    public Celular(String modelo, String nombreMarca, String codigoImei, Garantia garantia, double precio) {
+    public Celular(String modelo, String nombreMarca, String codigoImei, Garantia garantia, float precio) {
         this.modelo = modelo;
         this.nombreMarca = nombreMarca;
         this.codigoImei = codigoImei;
@@ -27,14 +25,13 @@ public class Celular {
         this.estado = "Disponible";
     }
 
-    
 
-    public String getNombre() {
+    public String getModelo() {
         return modelo;
     }
 
-    public void setNombre(String nombre) {
-        this.modelo = nombre;
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
     public String getNombreMarca() {
@@ -61,11 +58,11 @@ public class Celular {
         this.garantia = garantia;
     }
 
-    public double getPrecio() {
+    public float getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(float precio) {
         this.precio = precio;
     }
 
