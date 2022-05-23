@@ -45,8 +45,8 @@ public class Factura {
         return this.total + ((this.total * this.iva) / 100);
     }
 
-    @Override
-    public String toString() {
+
+    public String emitirFactura() {
         String salida = "";
         salida += "Factura N:. " + identificador + "\n"
                 + "Fecha de compra = " + fecha + "\n";

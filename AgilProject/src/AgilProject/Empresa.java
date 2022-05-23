@@ -64,7 +64,7 @@ public class Empresa {
         salida += ("\nAcontinuacion se presenta su factura");
         System.out.println(salida);
         Factura factura = new Factura("1", "Compra de celulares ", listaCelularesComprados);
-        salida += factura;
+        salida += factura.emitirFactura();
         System.out.println(salida);
 
     }
