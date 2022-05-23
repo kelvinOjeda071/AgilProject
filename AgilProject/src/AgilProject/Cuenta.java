@@ -32,6 +32,18 @@ public class Cuenta {
         this.contrasenia = contrasenia;
     }
 
+    public void registrarCompra(){
+        // Hacer algo
+    }
+
+    public void mostrarMetodoDePago(){
+        // Hacer algo
+    }
+
+    public void verificarMetodoDePago(){
+        // Hacer algo
+    }
+
     @Override
     public String toString() {
         return "Cuenta{" + "usuario=" + usuario + ", contrasenia=" + contrasenia + '}';

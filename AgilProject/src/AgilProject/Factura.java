@@ -19,7 +19,7 @@ public class Factura {
     private double total = 0;
     private final int iva = 12;
     private String fecha;
-    private ArrayList<Celular> listaCelular;
+    private ArrayList<Celular> listaCelulares;
 
     public Factura(String identificador, String detalleFactura, ArrayList<Celular> listaCelular) {
         this.identificador = identificador;
@@ -27,16 +27,16 @@ public class Factura {
         Date today = new Date(System.currentTimeMillis());
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         this.fecha = format.format(today);
-        this.listaCelular = listaCelular;
+        this.listaCelulares = listaCelular;
     }
 
     public void agregarListaCelulares(Celular celular) {
-        this.listaCelular.add(celular);
+        this.listaCelulares.add(celular);
     }
 
     public double calcularPrecioTotal() {
-        for (int i = 0; i < this.listaCelular.size(); i++) {
-            this.total += this.listaCelular.get(i).getPrecio();
+        for (int i = 0; i < this.listaCelulares.size(); i++) {
+            this.total += this.listaCelulares.get(i).getPrecio();
         }
         return this.total;
     }
@@ -50,9 +50,9 @@ public class Factura {
         String salida = "";
         salida += "Factura N:. " + identificador + "\n"
                 + "Fecha de compra = " + fecha + "\n";
-        for (int i = 0; i < this.listaCelular.size(); i++) {
-            salida += this.listaCelular.get(i).getModelo() + "  ";
-            salida += this.listaCelular.get(i).getPrecio() + "   \n";
+        for (int i = 0; i < this.listaCelulares.size(); i++) {
+            salida += this.listaCelulares.get(i).getModelo() + "  ";
+            salida += this.listaCelulares.get(i).getPrecio() + "   \n";
         }
         salida += "Sumatoria de precios = $" + calcularPrecioTotal()
                 + "\nIva = " + iva + " %"

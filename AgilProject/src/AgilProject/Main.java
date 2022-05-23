@@ -41,10 +41,9 @@ public class Main {
         listaCelulares.aniadirCelular(c3);
         listaCelulares.aniadirCelular(c5);
         Empresa empresa = new Empresa("MERCADOCELL.SA", listaCelulares);
-        empresa.cargarCuentas("C:\\Users\\gianc\\Desktop\\cuentaClientes.txt");
+        empresa.cargarCuentas("C:\\LecturaDeArchivos\\cuentaClientes.txt");
         empresa.registrarCliente();
         //empresa.iniciarSesionCuentaCliente("1", "1");
-
 
         //CREACION DE NUEVOS CLIENTES EN LA EMPRESA (G.N)
 
@@ -110,6 +109,7 @@ public class Main {
                 + "\n1. Comprar celular"
                 + "\n2. Salir";
     }
+
 
 
 }

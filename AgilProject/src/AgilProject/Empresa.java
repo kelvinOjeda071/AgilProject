@@ -55,20 +55,8 @@ public class Empresa {
                 listaCelularesComprados.add(listaCelularesEmpresa.get(i));
             }
         }
-        for (Celular c1 : listaCelularesComprados) {
-            System.out.println(c1);
-        }
     }
 
-//    public int retornarNumeroCelular(String codigoImei) {
-//        int numeroCelular = -1;
-//        for (int i = 0; i < listaCelularesEmpresa.size(); i++) {
-//            if (listaCelularesEmpresa.get(i).getCodigoImei().equals(codigoImei)) {
-//                numeroCelular = i;
-//            }
-//        }
-//        return numeroCelular;
-//    }
 
     public void generarFactura() {
         String salida = "";
