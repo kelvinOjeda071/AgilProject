@@ -158,7 +158,9 @@ public class Empresa {
     // - Existencia de suficiente stock como para vender un conjunto de celulares
 
     public boolean verificarAlComprarCelular(String modelo, int cantidad, Empresa empresa){
-        return this.verificarExistenciaCelular(modelo) && this.verificarDisponibilidadCelular(cantidad, modelo);
+        final boolean existeCelular = this.verificarExistenciaCelular(modelo);
+        final boolean estaDisponibleCelular = this.verificarDisponibilidadCelular(cantidad, modelo);
+        return (existeCelular && estaDisponibleCelular);
     }
 
 }
