@@ -17,7 +17,6 @@ public class Main {
     public static void main(String[] args) throws Exception {
         //CUANDO EL USUARIO QUIERA INICIAR SESION SE CARGARA LAS CUENTAS EXISTENTES
 
-
         ListaCelulares listaCelulares = new ListaCelulares();
         String opcionMenuCompra;
 
@@ -43,8 +42,8 @@ public class Main {
         listaCelulares.aniadirCelular(c5);
         Empresa empresa = new Empresa("MERCADOCELL.SA", listaCelulares);
         empresa.cargarCuentas("C:\\Users\\gianc\\Desktop\\cuentaClientes.txt");
-        //empresa.registrarCliente();
-        empresa.iniciarSesionCuentaCliente("1", "1");
+        empresa.registrarCliente();
+        //empresa.iniciarSesionCuentaCliente("1", "1");
 
 
         //CREACION DE NUEVOS CLIENTES EN LA EMPRESA (G.N)
