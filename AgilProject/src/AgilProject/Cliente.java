@@ -47,6 +47,27 @@ public class Cliente {
         this.factura = factura;
     }
 
+    public void inicarSesion(){
+        //Hacer algo
+    }
+
+    public void buscarCelular(){
+        //Hacer algo
+    }
+
+    public void comprarCelular(){
+        //Hacer algo
+    }
+
+    public void colocarMetodoDePago(){
+        //Hacer algo
+    }
+
+
+    public void reclamarGarantia(){
+        //Hacer algo
+    }
+
     @Override
     public String toString() {
         return "Cliente\n"
