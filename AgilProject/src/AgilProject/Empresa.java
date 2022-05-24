@@ -86,7 +86,8 @@ public class Empresa {
         Cliente nuevoCliente = new Cliente(nombreCliente, nuevaCuenta);
 
         //TODO: Verificar que no exista una cuenta con el mismo usuario
-        if (!verificarCuentaCliente(nuevaCuenta)) {
+        boolean existeCliente = verificarCuentaCliente(nuevoCliente.getCuenta());
+        if (!existeCliente) {
             this.listaDeClientes.add(nuevoCliente);
             System.out.println("USUARIO CREADO CON EXITO!!");
         } else {
@@ -145,7 +146,7 @@ public class Empresa {
     }
 
     //Menú que permite visualizar las opciones de compra hacia el comprador
-    public String mostrarMenuDeIngreso(){
+    public String mostrarMenuDeIngreso() {
         return "\n\nSeleccione una de las siguientes opciones: "
                 + "\n1. Comprar celular"
                 + "\n2. Salir"
@@ -156,7 +157,7 @@ public class Empresa {
     // - Existencia del modelo a comprar
     // - Existencia de suficiente stock como para vender un conjunto de celulares
 
-    public boolean verificarAlComprarCelular(String modelo, int cantidad, Empresa empresa){
+    public boolean verificarAlComprarCelular(String modelo, int cantidad, Empresa empresa) {
         final boolean existeCelular = this.verificarExistenciaCelular(modelo);
         final boolean estaDisponibleCelular = this.verificarDisponibilidadCelular(cantidad, modelo);
         return (existeCelular && estaDisponibleCelular);
