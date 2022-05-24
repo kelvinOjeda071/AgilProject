@@ -19,9 +19,9 @@ public class Empresa {
     ArrayList<Celular> listaCelularesComprados = new ArrayList<>();
 
 
-    public Empresa(String nombre, ListaCelulares listaCelularesEmpresa) {
+    public Empresa(String nombre) {
         this.nombre = nombre;
-        this.listaCelularesEmpresa = listaCelularesEmpresa;
+        this.listaCelularesEmpresa = new ListaCelulares();
         this.listaDeClientes = new ArrayList<>();
     }
 
@@ -168,5 +168,25 @@ public class Empresa {
         System.out.print("Cree una contrasena: ");
         String contrasena = entradaDeDatos.next();
         return new Cliente(nombreCliente, new Cuenta(nombreDeUsuario, contrasena));
+    }
+
+    public void cargarCelulares(String direccionArchivo) {
+        //"direccion: C:\\Users\\gianc\\Desktop\\celulares.txt"
+        LecturaArchivo archivo = new LecturaArchivo();
+        ArrayList celulares = archivo.cargarCelulares(direccionArchivo);
+        // Obtiene cada hashmap y de cada uno obtiene sus 3 claves
+        for (int i = 0; i < celulares.size(); i++) {
+            HashMap mp = (HashMap) celulares.get(i);
+            String modelo = (String) mp.get("modelo");
+            String nombreMarca = (String) mp.get("nombreMarca");
+            String codigoImei = (String) mp.get("codigoImei");
+            String fechaCaducidad = (String) mp.get("fechaCaducidad");
+            String descripcion = (String) mp.get("descripcion");
+            float precio = Float.parseFloat((String) mp.get("precio"));
+            //Se coloca en el arraylist de celulares de la empresa ya existentes
+            Garantia garantia = new Garantia(fechaCaducidad, descripcion);
+            Celular c = new Celular(modelo, nombreMarca, codigoImei, garantia, precio);
+            this.listaCelularesEmpresa.aniadirCelular(c);
+        }
     }
 }
