@@ -33,18 +33,20 @@ public class Empresa {
 
         System.out.println(salida);
         listaCelularesEmpresa.crearArrayListDeModelos();
-        listaCelularesEmpresa.delegarLaCantidadPorModelo();
         listaCelularesEmpresa.imprimirPorConsolaElementosListaDeMenu();
     }
 
+    // Verifica la existencia del modelo del celular una vez que el usuario ingresa el modelo de celular a comprar
     public boolean verificarExistenciaCelular(String modelo) {
         return listaCelularesEmpresa.verificarExistenciaCelularesMenuDesplegable(modelo);
     }
 
+    // Verifica que exista el suficiente stock como para vender un conjunto de celulares
     public boolean verificarDisponibilidadCelular(int cantidad, String modelo) {
         return listaCelularesEmpresa.verificarDisponibilidadMenuDesplegable(cantidad, modelo);
     }
 
+    // Se cambia el estado de los celulares una vez que los mismos se los ha fichado como vendidos
     public void cambiarEstadoNoDisponible(String modelo, int cantidad) {
 
         int cantidadIndisponible = 0;
@@ -57,7 +59,7 @@ public class Empresa {
         }
     }
 
-
+    // Se emite la factura acorde con los parametros de la clase factura.
     public void generarFactura() {
         String salida = "";
         salida += ("Se ha realizado la compra con exito");
@@ -148,6 +150,16 @@ public class Empresa {
                 + "\n1. Comprar celular"
                 + "\n2. Salir"
                 + "\nIngrese la opcion: ";
+    }
+
+    // Permite realizar las dos verificaciones al momento de realizar una compra de celulares:
+    // - Existencia del modelo a comprar
+    // - Existencia de suficiente stock como para vender un conjunto de celulares
+
+    public boolean verificarAlComprarCelular(String modelo, int cantidad, Empresa empresa){
+        final boolean existeCelular = this.verificarExistenciaCelular(modelo);
+        final boolean estaDisponibleCelular = this.verificarDisponibilidadCelular(cantidad, modelo);
+        return (existeCelular && estaDisponibleCelular);
     }
 
 }
