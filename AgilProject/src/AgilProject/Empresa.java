@@ -32,7 +32,7 @@ public class Empresa {
                 + "celulares";
 
         System.out.println(salida);
-        listaCelularesEmpresa.crearArrayListDeModelos();
+        listaCelularesEmpresa.crearListaMenuDesplegable();
         listaCelularesEmpresa.imprimirPorConsolaElementosListaDeMenu();
     }
 
@@ -189,4 +189,6 @@ public class Empresa {
             this.listaCelularesEmpresa.aniadirCelular(c);
         }
     }
+
+
 }

@@ -28,7 +28,7 @@ public class Test {
         listaCelulares.aniadirCelular(c5);
 //        listaCelulares.ordenarPorModelo();
         listaCelulares.imprimirPorConsolaElementos();
-        listaCelulares.crearArrayListDeModelos();
+        listaCelulares.crearListaMenuDesplegable();
         listaCelulares.imprimirPorConsolaElementosListaDeMenu();
 
     }
