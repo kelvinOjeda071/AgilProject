@@ -72,7 +72,7 @@ public class Empresa {
     }
     //LA EMPRESA CREARA UN NUEVO CLIENTE SIN UNA FACTURA PERO CON UNA CUENTA UNICA (G.N)
 
-    public Cliente registrarCliente() {
+    public void registrarCliente() {
         Scanner entradaDeDatos = new Scanner(System.in);
         System.out.print("Ingrese su nombre: ");
         String nombreCliente = entradaDeDatos.next();
@@ -84,18 +84,8 @@ public class Empresa {
         //Crear nuevo cliente
         Cuenta nuevaCuenta = new Cuenta(nombreDeUsuario, contrasena);
         Cliente nuevoCliente = new Cliente(nombreCliente, nuevaCuenta);
-
-        //TODO: Verificar que no exista una cuenta con el mismo usuario
-        boolean existeCliente = verificarCuentaCliente(nuevoCliente.getCuenta());
-        if (!existeCliente) {
-            this.listaDeClientes.add(nuevoCliente);
-            System.out.println("USUARIO CREADO CON EXITO!!");
-        } else {
-            System.out.println("ESTE USUARIO YA EXISTE CREAR OTRO USUARIO!!!");
-            registrarCliente();
-        }
-        //System.out.println(listaDeClientes);
-        return nuevoCliente;
+        //EXTRACT METHOD
+        registrarUsuario(nuevoCliente);
     }
 
     private boolean verificarCuentaCliente(Cuenta nuevaCuenta) {
@@ -163,4 +153,18 @@ public class Empresa {
         return (existeCelular && estaDisponibleCelular);
     }
 
+    //REFACTORING: EXTRACT METHOD
+    private void registrarUsuario(Cliente nuevoCliente) {
+        //TODO: Verificar que no exista una cuenta con el mismo usuario
+        //REFACTORING: INTRODUCE EXPLAINING VARIABLE
+        boolean existeCliente = verificarCuentaCliente(nuevoCliente.getCuenta());
+        if (!existeCliente) {
+            this.listaDeClientes.add(nuevoCliente);
+            System.out.println("USUARIO CREADO CON EXITO!!");
+        } else {
+            System.out.println("ESTE USUARIO YA EXISTE CREAR OTRO USUARIO!!!");
+            registrarCliente();
+        }
+        //System.out.println(listaDeClientes);
+    }
 }
