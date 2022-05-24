@@ -73,19 +73,10 @@ public class Empresa {
     //LA EMPRESA CREARA UN NUEVO CLIENTE SIN UNA FACTURA PERO CON UNA CUENTA UNICA (G.N)
 
     public void registrarCliente() {
-        Scanner entradaDeDatos = new Scanner(System.in);
-        System.out.print("Ingrese su nombre: ");
-        String nombreCliente = entradaDeDatos.next();
-        System.out.print("Cree un usuario: ");
-        String nombreDeUsuario = entradaDeDatos.next();
-        System.out.print("Cree una contrasena: ");
-        String contrasena = entradaDeDatos.next();
-
-        //Crear nuevo cliente
-        Cuenta nuevaCuenta = new Cuenta(nombreDeUsuario, contrasena);
-        Cliente nuevoCliente = new Cliente(nombreCliente, nuevaCuenta);
-        //EXTRACT METHOD
-        registrarUsuario(nuevoCliente);
+        //REFACTORING : MOVE METHOD
+        Cliente datosCliente = obtenerDatosUsuario();
+        //REFACTORING: MOVE METHOD
+        registrarUsuario(new Cliente(datosCliente.getNombre(), datosCliente.getCuenta()));
     }
 
     private boolean verificarCuentaCliente(Cuenta nuevaCuenta) {
@@ -166,5 +157,16 @@ public class Empresa {
             registrarCliente();
         }
         //System.out.println(listaDeClientes);
+    }
+
+    private Cliente obtenerDatosUsuario() {
+        Scanner entradaDeDatos = new Scanner(System.in);
+        System.out.print("Ingrese su nombre: ");
+        String nombreCliente = entradaDeDatos.next();
+        System.out.print("Cree un usuario: ");
+        String nombreDeUsuario = entradaDeDatos.next();
+        System.out.print("Cree una contrasena: ");
+        String contrasena = entradaDeDatos.next();
+        return new Cliente(nombreCliente, new Cuenta(nombreDeUsuario, contrasena));
     }
 }
