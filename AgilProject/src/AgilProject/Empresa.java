@@ -19,9 +19,9 @@ public class Empresa {
     ArrayList<Celular> listaCelularesComprados = new ArrayList<>();
 
 
-    public Empresa(String nombre, ListaCelulares listaCelularesEmpresa) {
+    public Empresa(String nombre) {
         this.nombre = nombre;
-        this.listaCelularesEmpresa = listaCelularesEmpresa;
+        this.listaCelularesEmpresa = new ListaCelulares();
         this.listaDeClientes = new ArrayList<>();
     }
 
@@ -72,29 +72,11 @@ public class Empresa {
     }
     //LA EMPRESA CREARA UN NUEVO CLIENTE SIN UNA FACTURA PERO CON UNA CUENTA UNICA (G.N)
 
-    public Cliente registrarCliente() {
-        Scanner entradaDeDatos = new Scanner(System.in);
-        System.out.print("Ingrese su nombre: ");
-        String nombreCliente = entradaDeDatos.next();
-        System.out.print("Cree un usuario: ");
-        String nombreDeUsuario = entradaDeDatos.next();
-        System.out.print("Cree una contrasena: ");
-        String contrasena = entradaDeDatos.next();
-
-        //Crear nuevo cliente
-        Cuenta nuevaCuenta = new Cuenta(nombreDeUsuario, contrasena);
-        Cliente nuevoCliente = new Cliente(nombreCliente, nuevaCuenta);
-
-        //TODO: Verificar que no exista una cuenta con el mismo usuario
-        if (!verificarCuentaCliente(nuevaCuenta)) {
-            this.listaDeClientes.add(nuevoCliente);
-            System.out.println("USUARIO CREADO CON EXITO!!");
-        } else {
-            System.out.println("ESTE USUARIO YA EXISTE CREAR OTRO USUARIO!!!");
-            registrarCliente();
-        }
-        //System.out.println(listaDeClientes);
-        return nuevoCliente;
+    public void registrarCliente() {
+        //REFACTORING : MOVE METHOD
+        Cliente datosCliente = obtenerDatosUsuario();
+        //REFACTORING: MOVE METHOD
+        registrarUsuario(new Cliente(datosCliente.getNombre(), datosCliente.getCuenta()));
     }
 
     private boolean verificarCuentaCliente(Cuenta nuevaCuenta) {
@@ -145,7 +127,7 @@ public class Empresa {
     }
 
     //Menú que permite visualizar las opciones de compra hacia el comprador
-    public String mostrarMenuDeIngreso(){
+    public String mostrarMenuDeIngreso() {
         return "\n\nSeleccione una de las siguientes opciones: "
                 + "\n1. Comprar celular"
                 + "\n2. Salir"
@@ -156,10 +138,55 @@ public class Empresa {
     // - Existencia del modelo a comprar
     // - Existencia de suficiente stock como para vender un conjunto de celulares
 
-    public boolean verificarAlComprarCelular(String modelo, int cantidad, Empresa empresa){
+    public boolean verificarAlComprarCelular(String modelo, int cantidad, Empresa empresa) {
         final boolean existeCelular = this.verificarExistenciaCelular(modelo);
         final boolean estaDisponibleCelular = this.verificarDisponibilidadCelular(cantidad, modelo);
         return (existeCelular && estaDisponibleCelular);
     }
 
+    //REFACTORING: EXTRACT METHOD
+    private void registrarUsuario(Cliente nuevoCliente) {
+        //TODO: Verificar que no exista una cuenta con el mismo usuario
+        //REFACTORING: INTRODUCE EXPLAINING VARIABLE
+        boolean existeCliente = verificarCuentaCliente(nuevoCliente.getCuenta());
+        if (!existeCliente) {
+            this.listaDeClientes.add(nuevoCliente);
+            System.out.println("USUARIO CREADO CON EXITO!!");
+        } else {
+            System.out.println("ESTE USUARIO YA EXISTE CREAR OTRO USUARIO!!!");
+            registrarCliente();
+        }
+        //System.out.println(listaDeClientes);
+    }
+
+    private Cliente obtenerDatosUsuario() {
+        Scanner entradaDeDatos = new Scanner(System.in);
+        System.out.print("Ingrese su nombre: ");
+        String nombreCliente = entradaDeDatos.next();
+        System.out.print("Cree un usuario: ");
+        String nombreDeUsuario = entradaDeDatos.next();
+        System.out.print("Cree una contrasena: ");
+        String contrasena = entradaDeDatos.next();
+        return new Cliente(nombreCliente, new Cuenta(nombreDeUsuario, contrasena));
+    }
+
+    public void cargarCelulares(String direccionArchivo) {
+        //"direccion: C:\\Users\\gianc\\Desktop\\celulares.txt"
+        LecturaArchivo archivo = new LecturaArchivo();
+        ArrayList celulares = archivo.cargarCelulares(direccionArchivo);
+        // Obtiene cada hashmap y de cada uno obtiene sus 3 claves
+        for (int i = 0; i < celulares.size(); i++) {
+            HashMap mp = (HashMap) celulares.get(i);
+            String modelo = (String) mp.get("modelo");
+            String nombreMarca = (String) mp.get("nombreMarca");
+            String codigoImei = (String) mp.get("codigoImei");
+            String fechaCaducidad = (String) mp.get("fechaCaducidad");
+            String descripcion = (String) mp.get("descripcion");
+            float precio = Float.parseFloat((String) mp.get("precio"));
+            //Se coloca en el arraylist de celulares de la empresa ya existentes
+            Garantia garantia = new Garantia(fechaCaducidad, descripcion);
+            Celular c = new Celular(modelo, nombreMarca, codigoImei, garantia, precio);
+            this.listaCelularesEmpresa.aniadirCelular(c);
+        }
+    }
 }
