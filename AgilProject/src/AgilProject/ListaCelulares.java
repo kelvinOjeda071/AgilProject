@@ -49,35 +49,13 @@ public class ListaCelulares {
         return Collections.binarySearch(listaCelulares, celular, new ComparadorCelulares());
     }
 
-    public void crearArrayListDeModelos() {
-        ordenarPorModelo();
-        Iterator<Celular> iteradorDeCelular = listaCelulares.iterator();
-        MenuDeplegable menuDeplegable;
-        String modelo = "";
-        int cantidad = 0;
-        float precioPorUnidad = 0;
-        Celular celularAuxiliar;
-        while (iteradorDeCelular.hasNext()) {
-            celularAuxiliar = iteradorDeCelular.next();
-            if (verificarCelularesDisponibles(celularAuxiliar)) {
-                modelo = celularAuxiliar.getModelo();
-                precioPorUnidad = celularAuxiliar.getPrecio();
-                menuDeplegable = new MenuDeplegable(modelo, cantidad, precioPorUnidad);
-                if (listaMenuDesplegable.estaVacio()) {
-                    listaMenuDesplegable.aniadirNuevoElementoDesplegable(menuDeplegable);
-                } else if (listaMenuDesplegable.buscarPorModelo(menuDeplegable) <= -1) {
-                    listaMenuDesplegable.aniadirNuevoElementoDesplegable(menuDeplegable);
-                }
-            }
-        }
-        listaMenuDesplegable.delegarLaCantidadPorModelo(listaMenuDesplegable, this);
-
-
+    public void crearListaMenuDesplegable(){
+        listaMenuDesplegable.crearArrayListDeModelos(this);
     }
 
-    public boolean verificarCelularesDisponibles(Celular celular){
-        return celular.getEstado().equalsIgnoreCase("Disponible");
-    }
+
+
+
 
     public int contarPorModelo(String modelo) {
         int cantidad = 0;

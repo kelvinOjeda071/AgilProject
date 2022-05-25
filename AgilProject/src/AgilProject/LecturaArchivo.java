@@ -32,5 +32,30 @@ public class LecturaArchivo {
         return informacionCliente;
     }
 
+    public ArrayList cargarCelulares(String direccionDelArchivo) {
+        ArrayList<HashMap> celulares = new ArrayList<HashMap>();
+        try {
+            BufferedReader bf = new BufferedReader(new FileReader(direccionDelArchivo));
+            //String txtTemp = "";
+            String bfRead;
+            while ((bfRead = bf.readLine()) != null) {
+                HashMap<String, String> informacionCelular = new HashMap<String, String>();
+                //txtTemp += bfRead + "\n";
+                String[] res = bfRead.split("[,]", 0);
+                informacionCelular.put("modelo", res[0]);
+                informacionCelular.put("nombreMarca", res[1]);
+                informacionCelular.put("codigoImei", res[2]);
+                informacionCelular.put("fechaCaducidad", res[3]);
+                informacionCelular.put("descripcion", res[4]);
+                informacionCelular.put("precio", res[5]);
+                celulares.add((informacionCelular));
+            }
+            //txt = txtTemp;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return celulares;
+    }
+
 
 }
