@@ -35,6 +35,7 @@ public class GananciaTest {
     public void setUp(){
         g = new Ganancia();
         System.out.println("Prueba N:. 3");
+        System.out.println("\tSetUp");
     }
 
 
@@ -64,8 +65,17 @@ public class GananciaTest {
     }
 
     @AfterClass
-    public static void given_twoNumbersAndModel_when_generarFicheroGanancia(){
+    public static void given_twoNumbersAndModel_when_generarFicheroGanancia_then_ok(){
         System.out.println("Prueba N:. 7");
+        LecturaArchivo lecturaDeArchivo = new LecturaArchivo();
+        boolean NoExisteError = lecturaDeArchivo.generarFicheroGanancia("Redmi note 9",
+                160,110);
+        assertTrue(NoExisteError);
+    }
+
+    @Test (timeout = 100)
+    public void given_TwoNumberAndModelForCalculateTime_when_generarFicheroGanancia_then_ok(){
+        System.out.println("Prueba N:. 8");
         LecturaArchivo lecturaDeArchivo = new LecturaArchivo();
         boolean NoExisteError = lecturaDeArchivo.generarFicheroGanancia("Redmi note 9",
                 160,110);
