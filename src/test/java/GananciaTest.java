@@ -1,9 +1,8 @@
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 import javax.swing.filechooser.FileSystemView;
+
+import java.io.FileNotFoundException;
 
 import static org.junit.Assert.*;
 
@@ -19,8 +18,19 @@ public class GananciaTest {
         int actual = lecturaDeArchivo.cargarCelulares(FileSystemView.
                 getFileSystemView().getDefaultDirectory().getPath()+"\\AgilProject\\celulares.txt").size();
         assertEquals(actual, expect);
-        System.out.println("Lectura de archivos exitosa");
+        System.out.println("Prueba N:. 4");
     }
+
+    @Test (expected = AssertionError.class)
+    public void given_AfileDirectorythatDoesNotExist_when_cargarArchivos_then_ok(){
+        System.out.println("Prueba N:. 5");
+        LecturaArchivo lecturaDeArchivo = new LecturaArchivo();
+        int expect = 3;
+        int actual = lecturaDeArchivo.cargarCelulares(FileSystemView.
+                getFileSystemView().getDefaultDirectory().getPath()+"\\celulares.txt").size();
+        assertEquals(actual, expect);
+    }
+
     @Before
     public void setUp(){
         g = new Ganancia();
@@ -39,9 +49,11 @@ public class GananciaTest {
     }
     @After
     public void give_two_prices_float_when_porcentajeGanacia_then_ok(){
-        System.out.println("Prueba N:.2");
-        float expected = Math.round(45.45*100d)/100;
+        System.out.println("Prueba N:. 2");
+        float expected = (float) ((100f)*((50f)/(110f)));
         float actual = g.porcentajeGanacia(160, 110);
         assertEquals(expected, actual, DELTA);
     }
+
+
 }

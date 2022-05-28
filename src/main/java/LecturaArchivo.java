@@ -25,7 +25,7 @@ public class LecturaArchivo {
             }
             //txt = txtTemp;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("El archivo no existe");
         }
         return celulares;
     }
