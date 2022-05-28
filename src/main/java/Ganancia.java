@@ -1,12 +1,7 @@
-package AgilProject;
-
-import java.io.*;
-import java.util.ArrayList;
-
 public class Ganancia {
-
     public float calcularGanancia(float precioDeVenta, float precioCompraEmpresa) {
-        return 0;
+        float ganancia = precioDeVenta - precioCompraEmpresa;
+        return ganancia;
     }
 
 }
