@@ -63,5 +63,16 @@ public class GananciaTest {
         assertEquals(expected, actual, 0.0);
     }
 
+    @AfterClass
+    public static void given_twoNumbersAndModel_when_generarFicheroGanancia(){
+        System.out.println("Prueba N:. 7");
+        LecturaArchivo lecturaDeArchivo = new LecturaArchivo();
+        boolean NoExisteError = lecturaDeArchivo.generarFicheroGanancia("Redmi note 9",
+                160,110);
+        assertTrue(NoExisteError);
+    }
+
+
+
 
 }

@@ -1,5 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -30,6 +29,24 @@ public class LecturaArchivo {
         return celulares;
     }
 
+    public boolean generarFicheroGanancia(String modelo, float precioCompraEmpresa, float precioDeVenta) {
+        boolean noExisteError = true;
+        File fichero = new File("ganancias.txt");
+        float ganancia = precioDeVenta - precioCompraEmpresa;
+        try {
+            FileWriter w = new FileWriter(fichero);
+            BufferedWriter bw = new BufferedWriter(w);
+            PrintWriter wr = new PrintWriter(bw);
+            //wr.write("La ganancia del modelo " + modelo + " es: " + ganancia);
+            wr.append("La ganancia del modelo " + modelo+ " es: " + ganancia);
+            wr.close();
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return noExisteError;
+    }
 
 
 
