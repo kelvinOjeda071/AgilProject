@@ -53,7 +53,7 @@ public class ListaMenuDesplegable {
             celularAuxiliar = iteradorDeCelular.next();
             if (verificarCelularesDisponibles(celularAuxiliar)) {
                 modelo = celularAuxiliar.getModelo();
-                precioPorUnidad = celularAuxiliar.getPrecio();
+                precioPorUnidad = celularAuxiliar.getPrecioDeVenta();
                 menuDeplegable = new MenuDeplegable(modelo, cantidad, precioPorUnidad);
                 if (this.estaVacio()) {
                     this.aniadirNuevoElementoDesplegable(menuDeplegable);

@@ -48,6 +48,7 @@ public class LecturaArchivo {
                 informacionCelular.put("fechaCaducidad", res[3]);
                 informacionCelular.put("descripcion", res[4]);
                 informacionCelular.put("precio", res[5]);
+                informacionCelular.put("precioCompra", res[6]);
                 celulares.add((informacionCelular));
             }
             //txt = txtTemp;
@@ -55,6 +56,27 @@ public class LecturaArchivo {
             e.printStackTrace();
         }
         return celulares;
+    }
+
+
+    public ArrayList cargarDatosGanancia(String direccionDelArchivo) {
+        ArrayList<HashMap> celularesGanancia = new ArrayList<HashMap>();
+        try {
+            BufferedReader bf = new BufferedReader(new FileReader(direccionDelArchivo));
+            //String txtTemp = "";
+            String bfRead;
+            while ((bfRead = bf.readLine()) != null) {
+                HashMap<String, String> informacionCelularGanancia = new HashMap<String, String>();
+                //txtTemp += bfRead + "\n";
+                String[] res = bfRead.split("[,]", 0);
+                informacionCelularGanancia.put("precioCompra", res[6]);
+                celularesGanancia.add((informacionCelularGanancia));
+            }
+            //txt = txtTemp;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return celularesGanancia;
     }
 
 

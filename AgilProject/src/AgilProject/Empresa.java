@@ -1,8 +1,7 @@
-/*
+package AgilProject;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package AgilProject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +15,7 @@ public class Empresa {
     private ListaCelulares listaCelularesEmpresa;
     //EMPRESA TIENE CLIENTES Y LOS CLIENTES TIENEN CUENTAS
     private ArrayList<Cliente> listaDeClientes;
+    //Celulares comprados
     ArrayList<Celular> listaCelularesComprados = new ArrayList<>();
 
 
@@ -68,6 +68,8 @@ public class Empresa {
         Factura factura = new Factura("1", "Compra de celulares ", listaCelularesComprados);
         salida += factura.emitirFactura();
         System.out.println(salida);
+        //Se tiene que generar una ganancia del celular vendido
+        factura.calcularGananciasCelularesVendidos(listaCelularesComprados);
 
     }
     //LA EMPRESA CREARA UN NUEVO CLIENTE SIN UNA FACTURA PERO CON UNA CUENTA UNICA (G.N)
@@ -138,7 +140,7 @@ public class Empresa {
     // - Existencia del modelo a comprar
     // - Existencia de suficiente stock como para vender un conjunto de celulares
 
-    public boolean verificarAlComprarCelular(String modelo, int cantidad, Empresa empresa) {
+    public boolean verificarAlComprarCelular(String modelo, int cantidad) {
         final boolean existeCelular = this.verificarExistenciaCelular(modelo);
         final boolean estaDisponibleCelular = this.verificarDisponibilidadCelular(cantidad, modelo);
         return (existeCelular && estaDisponibleCelular);
@@ -183,9 +185,10 @@ public class Empresa {
             String fechaCaducidad = (String) mp.get("fechaCaducidad");
             String descripcion = (String) mp.get("descripcion");
             float precio = Float.parseFloat((String) mp.get("precio"));
+            float precioCompraEmp = Float.parseFloat((String) mp.get("precioCompra"));
             //Se coloca en el arraylist de celulares de la empresa ya existentes
             Garantia garantia = new Garantia(fechaCaducidad, descripcion);
-            Celular c = new Celular(modelo, nombreMarca, codigoImei, garantia, precio);
+            Celular c = new Celular(modelo, nombreMarca, codigoImei, garantia, precio, precioCompraEmp);
             this.listaCelularesEmpresa.aniadirCelular(c);
         }
     }

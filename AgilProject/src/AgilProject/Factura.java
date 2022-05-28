@@ -1,25 +1,24 @@
-/*
+package AgilProject;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package AgilProject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
- *
  * @author Kelvin
  */
 public class Factura {
-
+    public Ganancia g;
     private String identificador;
     private String detalleFactura;
     private double total = 0;
     private final int iva = 12;
     private String fecha;
-    private ArrayList<Celular> listaCelulares;
+
+    protected ArrayList<Celular> listaCelulares;
 
     public Factura(String identificador, String detalleFactura, ArrayList<Celular> listaCelular) {
         this.identificador = identificador;
@@ -36,7 +35,7 @@ public class Factura {
 
     public double calcularPrecioTotal() {
         for (int i = 0; i < this.listaCelulares.size(); i++) {
-            this.total += this.listaCelulares.get(i).getPrecio();
+            this.total += this.listaCelulares.get(i).getPrecioDeVenta();
         }
         return this.total;
     }
@@ -52,7 +51,7 @@ public class Factura {
                 + "Fecha de compra = " + fecha + "\n";
         for (int i = 0; i < this.listaCelulares.size(); i++) {
             salida += this.listaCelulares.get(i).getModelo() + "  ";
-            salida += this.listaCelulares.get(i).getPrecio() + "   \n";
+            salida += this.listaCelulares.get(i).getPrecioDeVenta() + "   \n";
         }
         salida += "Sumatoria de precios = $" + calcularPrecioTotal()
                 + "\nIva = " + iva + " %"
@@ -60,4 +59,13 @@ public class Factura {
         return salida;
     }
 
+    public void calcularGananciasCelularesVendidos(ArrayList<Celular> celularesVendidos) {
+        Ganancia g = new Ganancia();
+        for (Celular celularVendido : celularesVendidos) {
+            String modelo = celularVendido.getModelo();
+            float precioVenta = celularVendido.getPrecioDeVenta();
+            float precioCompraEmpresa = celularVendido.getPrecioDeCompraEmpresa();
+            g.calcularGanancia(precioVenta, precioCompraEmpresa);
+        }
+    }
 }
