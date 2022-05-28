@@ -34,7 +34,7 @@ public class GananciaTest {
     @Before
     public void setUp(){
         g = new Ganancia();
-        System.out.println("Setup");
+        System.out.println("Prueba N:. 3");
     }
 
 
@@ -53,6 +53,14 @@ public class GananciaTest {
         float expected = (float) ((100f)*((50f)/(110f)));
         float actual = g.porcentajeGanacia(160, 110);
         assertEquals(expected, actual, DELTA);
+    }
+
+    @Ignore
+    public void give_two_pricesAreFloatAndOneOfTheIsZero_when_porcentajeGanacia_then_ok(){
+        System.out.println("Prueba N:. 6");
+        float expected = (100f)*((50f)/(110f));
+        float actual = g.porcentajeGanacia(160, 0);
+        assertEquals(expected, actual, 0.0);
     }
 
 
