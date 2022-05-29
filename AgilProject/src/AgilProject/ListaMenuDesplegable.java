@@ -2,6 +2,7 @@ package AgilProject;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 public class ListaMenuDesplegable {
     private ArrayList <MenuDeplegable> listaMenuDesplegable;
@@ -38,6 +39,45 @@ public class ListaMenuDesplegable {
             System.out.printf("|%12s|%12d|%18s|%n",m.getModelo(), m.getCantidad(), "$ "+m.getPrecio());
         }
     }
+
+    public void crearArrayListDeModelos(ListaCelulares listaCelulares) {
+        listaCelulares.ordenarPorModelo();
+        ArrayList<Celular> listaCelularAux = listaCelulares.getListaCelulares();
+        Iterator<Celular> iteradorDeCelular = listaCelularAux.iterator();
+        MenuDeplegable menuDeplegable;
+        String modelo = "";
+        int cantidad = 0;
+        float precioPorUnidad = 0;
+        Celular celularAuxiliar;
+        while (iteradorDeCelular.hasNext()) {
+            celularAuxiliar = iteradorDeCelular.next();
+            if (verificarCelularesDisponibles(celularAuxiliar)) {
+                modelo = celularAuxiliar.getModelo();
+                precioPorUnidad = celularAuxiliar.getPrecio();
+                menuDeplegable = new MenuDeplegable(modelo, cantidad, precioPorUnidad);
+                if (this.estaVacio()) {
+                    this.aniadirNuevoElementoDesplegable(menuDeplegable);
+                } else if (this.buscarPorModelo(menuDeplegable) <= -1) {
+                    this.aniadirNuevoElementoDesplegable(menuDeplegable);
+                }
+            }
+        }
+        listaCelulares.setListaCelulares(listaCelularAux);
+        this.delegarLaCantidadPorModelo(listaCelulares);
+
+
+    }
+    public boolean verificarCelularesDisponibles(Celular celular){
+        return celular.getEstado().equalsIgnoreCase("Disponible");
+    }
+
+    public void delegarLaCantidadPorModelo(ListaCelulares listaCelulares) {
+        for (int i = 0; i < listaMenuDesplegable.size(); i++) {
+            listaMenuDesplegable.get(i).setCantidad(listaCelulares.contarPorModelo(listaMenuDesplegable.
+                    get(i).getModelo()));
+        }
+    }
+
 
     public ArrayList<MenuDeplegable> getListaMenuDesplegable(){
         return this.listaMenuDesplegable;
