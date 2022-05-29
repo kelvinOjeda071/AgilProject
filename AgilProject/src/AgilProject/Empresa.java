@@ -70,9 +70,7 @@ public class Empresa {
         System.out.println(salida);
         //Se tiene que generar una ganancia del celular vendido
         factura.calcularGananciasCelularesVendidos(listaCelularesComprados);
-
     }
-    //LA EMPRESA CREARA UN NUEVO CLIENTE SIN UNA FACTURA PERO CON UNA CUENTA UNICA (G.N)
 
     public void registrarCliente() {
         //REFACTORING : MOVE METHOD

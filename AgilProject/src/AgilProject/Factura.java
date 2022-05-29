@@ -65,7 +65,7 @@ public class Factura {
             String modelo = celularVendido.getModelo();
             float precioVenta = celularVendido.getPrecioDeVenta();
             float precioCompraEmpresa = celularVendido.getPrecioDeCompraEmpresa();
-            g.calcularGanancia(precioVenta, precioCompraEmpresa);
+            g.calcularGanancia(precioVenta, precioCompraEmpresa, modelo, celularesVendidos);
         }
     }
 }
