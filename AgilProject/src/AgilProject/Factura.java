@@ -59,13 +59,4 @@ public class Factura {
         return salida;
     }
 
-    public void calcularGananciasCelularesVendidos(ArrayList<Celular> celularesVendidos) {
-        Ganancia g = new Ganancia();
-        for (Celular celularVendido : celularesVendidos) {
-            String modelo = celularVendido.getModelo();
-            float precioVenta = celularVendido.getPrecioDeVenta();
-            float precioCompraEmpresa = celularVendido.getPrecioDeCompraEmpresa();
-            g.calcularGanancia(precioVenta, precioCompraEmpresa, modelo, celularesVendidos);
-        }
-    }
 }
