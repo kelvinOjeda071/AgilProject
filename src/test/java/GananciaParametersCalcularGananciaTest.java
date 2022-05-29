@@ -7,7 +7,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @RunWith(value = Parameterized.class)
-public class GananciaParametersTest {
+public class GananciaParametersCalcularGananciaTest {
     private static final double DELTA = 1e-15;
     private float precioDeVenta, precioCompraEmpresa, expected;
 
@@ -23,12 +23,13 @@ public class GananciaParametersTest {
         objects.add(new Object[]{550, 515, 35});
         return objects;
     }
-    public GananciaParametersTest (float precioDeVenta, float precioCompraEmpresa, float expected){
+    public GananciaParametersCalcularGananciaTest(float precioDeVenta, float precioCompraEmpresa, float expected){
         this.precioDeVenta = precioDeVenta;
         this.precioCompraEmpresa = precioCompraEmpresa;
         this.expected = expected;
     }
 
+    // Test con parámetros para calcular la ganancia
     @Test
     public void given_parameters_when_calcularGanancia_then_ok(){
         Ganancia g = new Ganancia();

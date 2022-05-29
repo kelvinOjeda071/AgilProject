@@ -2,8 +2,6 @@ import org.junit.*;
 
 import javax.swing.filechooser.FileSystemView;
 
-import java.io.FileNotFoundException;
-
 import static org.junit.Assert.*;
 
 public class GananciaTest {
@@ -52,7 +50,7 @@ public class GananciaTest {
     public void give_two_prices_float_when_porcentajeGanacia_then_ok(){
         System.out.println("Prueba N:. 2");
         float expected = (float) ((100f)*((50f)/(110f)));
-        float actual = g.porcentajeGanacia(160, 110);
+        float actual = g.porcentajeGanancia(160, 110);
         assertEquals(expected, actual, DELTA);
     }
 
@@ -60,7 +58,7 @@ public class GananciaTest {
     public void give_two_pricesAreFloatAndOneOfTheIsZero_when_porcentajeGanacia_then_ok(){
         System.out.println("Prueba N:. 6");
         float expected = (100f)*((50f)/(110f));
-        float actual = g.porcentajeGanacia(160, 0);
+        float actual = g.porcentajeGanancia(160, 0);
         assertEquals(expected, actual, 0.0);
     }
 
