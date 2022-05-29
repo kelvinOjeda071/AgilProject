@@ -1,6 +1,6 @@
 public class Ganancia {
 
-    public float porcentajeGanacia(float precioDeVenta, float precioCompraEmpresa) {
+    public float porcentajeGanancia(float precioDeVenta, float precioCompraEmpresa) {
         float ganancia = calcularGanancia(precioDeVenta, precioCompraEmpresa);
         return (ganancia / precioCompraEmpresa)*100;
 
