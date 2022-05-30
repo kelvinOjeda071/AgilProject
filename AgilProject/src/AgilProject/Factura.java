@@ -71,16 +71,20 @@ public class Factura {
             BufferedWriter bw = new BufferedWriter(w);
             PrintWriter wr = new PrintWriter(bw);
             //wr.write("La ganancia del modelo " + modelo + " es: " + ganancia);
-            for (Celular celularVendido : celularesVendidos) {
-                float precioCompraEmpresa= celularVendido.getPrecioDeCompraEmpresa();
-                float precioDeVenta = celularVendido.getPrecioDeVenta();
-                float ganancia = precioDeVenta - precioCompraEmpresa;
-                wr.append("La ganancia del modelo " + celularVendido.getModelo() + " es: " + ganancia + "\n");
-            }
+            obtenerDatosGanancias(celularesVendidos, wr);
             wr.close();
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void obtenerDatosGanancias(ArrayList<Celular> celularesVendidos, PrintWriter wr) {
+        for (Celular celularVendido : celularesVendidos) {
+            float precioCompraEmpresa= celularVendido.getPrecioDeCompraEmpresa();
+            float precioDeVenta = celularVendido.getPrecioDeVenta();
+            float ganancia = precioDeVenta - precioCompraEmpresa;
+            wr.append("La ganancia del modelo " + celularVendido.getModelo() + " es: " + ganancia + "\n");
         }
     }
 
