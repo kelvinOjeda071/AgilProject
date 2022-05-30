@@ -1,3 +1,4 @@
+import AgilProject.Ganancia;
 import org.junit.*;
 
 import javax.swing.filechooser.FileSystemView;
@@ -79,8 +80,5 @@ public class GananciaTest {
                 160,110);
         assertTrue(NoExisteError);
     }
-
-
-
 
 }

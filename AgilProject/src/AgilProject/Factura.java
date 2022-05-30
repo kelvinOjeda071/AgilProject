@@ -65,7 +65,6 @@ public class Factura {
 
     public void generarFicheroGanancia(ArrayList<Celular> celularesVendidos) {
         File fichero = new File("ganancias.txt");
-
         try {
             FileWriter w = new FileWriter(fichero);
             BufferedWriter bw = new BufferedWriter(w);
