@@ -68,8 +68,6 @@ public class Empresa {
         Factura factura = new Factura("1", "Compra de celulares ", listaCelularesComprados);
         salida += factura.emitirFactura();
         System.out.println(salida);
-        //Se tiene que generar una ganancia del celular vendido
-        factura.g.calcularGananciasCelularesVendidos(listaCelularesComprados);
     }
 
     public void registrarCliente() {

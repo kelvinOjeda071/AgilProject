@@ -3,6 +3,7 @@ package AgilProject;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,7 +57,32 @@ public class Factura {
         salida += "Sumatoria de precios = $" + calcularPrecioTotal()
                 + "\nIva = " + iva + " %"
                 + "\nPrecio final = $" + calcularPrecioTotalConIva();
+        //Se tiene que generar una ganancia del celular vendido
+        generarFicheroGanancia(this.listaCelulares);
         return salida;
+
     }
+
+    public void generarFicheroGanancia(ArrayList<Celular> celularesVendidos) {
+        File fichero = new File("ganancias.txt");
+
+        try {
+            FileWriter w = new FileWriter(fichero);
+            BufferedWriter bw = new BufferedWriter(w);
+            PrintWriter wr = new PrintWriter(bw);
+            //wr.write("La ganancia del modelo " + modelo + " es: " + ganancia);
+            for (Celular celularVendido : celularesVendidos) {
+                float precioCompraEmpresa= celularVendido.getPrecioDeCompraEmpresa();
+                float precioDeVenta = celularVendido.getPrecioDeVenta();
+                float ganancia = precioDeVenta - precioCompraEmpresa;
+                wr.append("La ganancia del modelo " + celularVendido.getModelo() + " es: " + ganancia + "\n");
+            }
+            wr.close();
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
