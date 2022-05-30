@@ -1,8 +1,7 @@
-/*
+package AgilProject;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package AgilProject;
 
 /**
  *
@@ -13,16 +12,21 @@ public class Celular {
     private String nombreMarca;
     private String codigoImei;
     private Garantia garantia;
-    private float precio;
+    private float precioDeVenta;
+    //------------------------
+    private float precioDeCompraEmpresa;
+    //-----------------------
     private String estado;
 
-    public Celular(String modelo, String nombreMarca, String codigoImei, Garantia garantia, float precio) {
+
+    public Celular(String modelo, String nombreMarca, String codigoImei, Garantia garantia, float precio, float precioDeCompraEmpresa) {
         this.modelo = modelo;
         this.nombreMarca = nombreMarca;
         this.codigoImei = codigoImei;
         this.garantia = garantia;
-        this.precio = precio;
+        this.precioDeVenta = precio;
         this.estado = "Disponible";
+        this.precioDeCompraEmpresa = precioDeCompraEmpresa;
     }
 
 
@@ -58,12 +62,12 @@ public class Celular {
         this.garantia = garantia;
     }
 
-    public float getPrecio() {
-        return precio;
+    public float getPrecioDeVenta() {
+        return precioDeVenta;
     }
 
-    public void setPrecio(float precio) {
-        this.precio = precio;
+    public void setPrecioDeVenta(float precioDeVenta) {
+        this.precioDeVenta = precioDeVenta;
     }
 
     public String getEstado() {
@@ -73,8 +77,10 @@ public class Celular {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    
+
+    public float getPrecioDeCompraEmpresa() {
+        return precioDeCompraEmpresa;
+    }
 
     @Override
     public String toString() {
@@ -82,7 +88,7 @@ public class Celular {
                 + "\nMarca = " + nombreMarca 
                 + "\nCodigo Imei = " + codigoImei
                 + "\n" + garantia 
-                + "\nPrecio = $" + precio 
+                + "\nPrecio = $" + precioDeVenta
                 + "\nEstado = " + estado +"\n";
     }
 

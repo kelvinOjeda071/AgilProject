@@ -1,8 +1,7 @@
-/*
+package AgilProject;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package AgilProject;
 
 import javax.swing.filechooser.FileSystemView;
 import java.util.Scanner;
@@ -18,12 +17,13 @@ public class Main {
     public static void main(String[] args) throws Exception {
         //CUANDO EL USUARIO QUIERA INICIAR SESION SE CARGARA LAS CUENTAS EXISTENTES
 
+
         Empresa empresa = new Empresa("MERCADOCELL.SA");
         //EXTRACT METHOD
-        empresa.cargarCelulares(FileSystemView.getFileSystemView().getDefaultDirectory().getPath()
-                +"\\AgilProject\\celulares.txt");
-        empresa.cargarCuentas(FileSystemView.getFileSystemView().getDefaultDirectory().getPath()
-                +"\\AgilProject\\cuentaClientes.txt");
+        empresa.cargarCelulares(FileSystemView.
+                getFileSystemView().getDefaultDirectory().getPath() + "\\AgilProject\\celulares.txt");
+        empresa.cargarCuentas(FileSystemView.
+                getFileSystemView().getDefaultDirectory().getPath() + "\\AgilProject\\cuentaClientes.txt");
         empresa.registrarCliente();
         //empresa.iniciarSesionCuentaCliente();
         System.out.println(empresa.mostrarMenuDeIngreso());
@@ -37,11 +37,11 @@ public class Main {
                     int cantidadCelulares;
                     Scanner sc1 = new Scanner(System.in);
                     empresa.mostrarCelulares();
-                    System.out.println("Seleccione el celular que desea por su modelo: ");
+                    System.out.print("Seleccione el celular que desea por su modelo: ");
                     modeloDeCelular = sc1.nextLine();
-                    System.out.println("Ingrese la cantidad de telefonos que desee comprar: ");
+                    System.out.print("Ingrese la cantidad de telefonos que desee comprar: ");
                     cantidadCelulares = sc1.nextInt();
-                    if (empresa.verificarAlComprarCelular(modeloDeCelular, cantidadCelulares, empresa)) {
+                    if (empresa.verificarAlComprarCelular(modeloDeCelular, cantidadCelulares)) {
                         empresa.cambiarEstadoNoDisponible(modeloDeCelular, cantidadCelulares);
                         empresa.generarFactura();
                         System.exit(0);
