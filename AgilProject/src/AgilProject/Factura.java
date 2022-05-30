@@ -81,11 +81,15 @@ public class Factura {
 
     private void obtenerDatosGanancias(ArrayList<Celular> celularesVendidos, PrintWriter wr) {
         for (Celular celularVendido : celularesVendidos) {
-            float precioCompraEmpresa= celularVendido.getPrecioDeCompraEmpresa();
-            float precioDeVenta = celularVendido.getPrecioDeVenta();
-            float ganancia = precioDeVenta - precioCompraEmpresa;
+            float ganancia = calcularGanancia(celularVendido);
             wr.append("La ganancia del modelo " + celularVendido.getModelo() + " es: " + ganancia + "\n");
         }
+    }
+
+    private float calcularGanancia(Celular celularVendido) {
+        float precioCompraEmpresa = celularVendido.getPrecioDeCompraEmpresa();
+        float precioDeVenta = celularVendido.getPrecioDeVenta();
+        return precioDeVenta - precioCompraEmpresa;
     }
 
 
