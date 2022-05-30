@@ -3,6 +3,7 @@ package AgilProject;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,16 +57,39 @@ public class Factura {
         salida += "Sumatoria de precios = $" + calcularPrecioTotal()
                 + "\nIva = " + iva + " %"
                 + "\nPrecio final = $" + calcularPrecioTotalConIva();
+        //Se tiene que generar una ganancia del celular vendido
+        generarFicheroGanancia(this.listaCelulares);
         return salida;
+
     }
 
-    public void calcularGananciasCelularesVendidos(ArrayList<Celular> celularesVendidos) {
-        Ganancia g = new Ganancia();
-        for (Celular celularVendido : celularesVendidos) {
-            String modelo = celularVendido.getModelo();
-            float precioVenta = celularVendido.getPrecioDeVenta();
-            float precioCompraEmpresa = celularVendido.getPrecioDeCompraEmpresa();
-            g.calcularGanancia(precioVenta, precioCompraEmpresa);
+    public void generarFicheroGanancia(ArrayList<Celular> celularesVendidos) {
+        File fichero = new File("ganancias.txt");
+        try {
+            FileWriter w = new FileWriter(fichero);
+            BufferedWriter bw = new BufferedWriter(w);
+            PrintWriter wr = new PrintWriter(bw);
+            //wr.write("La ganancia del modelo " + modelo + " es: " + ganancia);
+            obtenerDatosGanancias(celularesVendidos, wr);
+            wr.close();
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
+    private void obtenerDatosGanancias(ArrayList<Celular> celularesVendidos, PrintWriter wr) {
+        for (Celular celularVendido : celularesVendidos) {
+            float ganancia = calcularGanancia(celularVendido);
+            wr.append("La ganancia del modelo " + celularVendido.getModelo() + " es: " + ganancia + "\n");
+        }
+    }
+
+    private float calcularGanancia(Celular celularVendido) {
+        float precioCompraEmpresa = celularVendido.getPrecioDeCompraEmpresa();
+        float precioDeVenta = celularVendido.getPrecioDeVenta();
+        return precioDeVenta - precioCompraEmpresa;
+    }
+
+
 }

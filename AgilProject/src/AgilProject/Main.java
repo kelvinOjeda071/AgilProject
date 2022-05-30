@@ -3,6 +3,7 @@ package AgilProject;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 
+import javax.swing.filechooser.FileSystemView;
 import java.util.Scanner;
 
 /**
@@ -19,8 +20,10 @@ public class Main {
 
         Empresa empresa = new Empresa("MERCADOCELL.SA");
         //EXTRACT METHOD
-        empresa.cargarCelulares("C:\\Users\\gianc\\Desktop\\celulares.txt");
-        empresa.cargarCuentas("C:\\Users\\gianc\\Desktop\\cuentaClientes.txt");
+        empresa.cargarCelulares(FileSystemView.
+                getFileSystemView().getDefaultDirectory().getPath() + "\\AgilProject\\celulares.txt");
+        empresa.cargarCuentas(FileSystemView.
+                getFileSystemView().getDefaultDirectory().getPath() + "\\AgilProject\\cuentaClientes.txt");
         empresa.registrarCliente();
         //empresa.iniciarSesionCuentaCliente();
         System.out.println(empresa.mostrarMenuDeIngreso());

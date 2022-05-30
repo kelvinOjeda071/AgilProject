@@ -68,11 +68,7 @@ public class Empresa {
         Factura factura = new Factura("1", "Compra de celulares ", listaCelularesComprados);
         salida += factura.emitirFactura();
         System.out.println(salida);
-        //Se tiene que generar una ganancia del celular vendido
-        factura.calcularGananciasCelularesVendidos(listaCelularesComprados);
-
     }
-    //LA EMPRESA CREARA UN NUEVO CLIENTE SIN UNA FACTURA PERO CON UNA CUENTA UNICA (G.N)
 
     public void registrarCliente() {
         //REFACTORING : MOVE METHOD
